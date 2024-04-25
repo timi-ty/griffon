@@ -1,0 +1,6 @@
+/* This css style sheet is not imported anywhere and only exists to be updated in dev mode with linting. The current state eof this css file should be copied and pasted as raw text in the ThemeProvider */
+
+:root{
+    --background-color: #ffffff;
+    --primary-text-color: #000000;
+}

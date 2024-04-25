@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./global.css";
+import { Provider } from "react-redux";
+import ThemeInjector from "./_infra-components/theme/Theme";
+import { store } from "./_state/store";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <ThemeInjector />
       <body className={inter.className}>{children}</body>
     </html>
   );
