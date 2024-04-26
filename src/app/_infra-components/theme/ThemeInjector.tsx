@@ -43,13 +43,11 @@ function ThemeInjector() {
 
   useEffect(() => {
     const unsubscribe = store.subscribe(onStateChanged);
-
     return () => unsubscribe();
   }, []);
 
   useEffect(() => {
     const unloadTheme = theme === "dark" ? useDarkTheme() : useLightTheme();
-
     return () => unloadTheme();
   }, [theme]);
 
