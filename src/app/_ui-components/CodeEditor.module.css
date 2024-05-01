@@ -1,0 +1,12 @@
+.main{
+    width: 100%;
+}
+
+.codeArea{
+    font-family: monospace;
+    width: 100%;
+    resize: none;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    background-color: var(--background-accent-color);
+}

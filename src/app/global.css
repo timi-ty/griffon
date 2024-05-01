@@ -1,4 +1,14 @@
 html{
-    background-color: var(--background-color);
+    background-color: var(--background-accent-color);
     color: var(--primary-text-color);
+}
+
+body{
+    background-color: var(--background-color);
+    margin: 0px;
+    padding: 0.5rem;
+}
+
+*{
+    box-sizing: border-box;
 }

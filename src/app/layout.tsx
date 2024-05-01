@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./global.css";
-import { Provider } from "react-redux";
 import ThemeInjector from "./_infra-components/theme/ThemeInjector";
-import { store } from "./_state/store";
+import Header from "./_ui-components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThemeInjector />
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

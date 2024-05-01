@@ -22,16 +22,20 @@ function useLightTheme() {
   return injectStyles(`
   :root{
     --background-color: #ffffff;
+    --background-accent-color: #d4d4d4;
     --primary-text-color: #000000;
-  }`);
+    --primary-color: #c94848;
+}`);
 }
 
 function useDarkTheme() {
   return injectStyles(`
   :root{
     --background-color: #000000;
+    --background-accent-color: #2d2d2d;
     --primary-text-color: #ffffff;
-  }`);
+    --primary-color: #c94848;
+}`);
 }
 
 function ThemeInjector() {

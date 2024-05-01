@@ -3,11 +3,18 @@ import { Theme } from "../_infra-components/theme/ThemeInjector";
 
 interface GlobalUIState {
   theme: Theme;
+  visualizeData: number[];
 }
 
 const defaultGlobalUIState: GlobalUIState = {
   theme: "dark",
+  visualizeData: [1, 2],
 };
+
+interface VisualizeDataAction {
+  type: string;
+  payload: number[];
+}
 
 const globalUISlice = createSlice({
   name: "globalUIState",
@@ -16,10 +23,13 @@ const globalUISlice = createSlice({
     toggleTheme(state) {
       state.theme = state.theme === "dark" ? "light" : "dark";
     },
+    setVisualizeData(state, action: VisualizeDataAction) {
+      state.visualizeData = action.payload;
+    },
   },
 });
 
-export const { toggleTheme } = globalUISlice.actions;
+export const { toggleTheme, setVisualizeData } = globalUISlice.actions;
 
 export { type GlobalUIState };
 

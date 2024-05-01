@@ -1,10 +1,13 @@
+import ActionStrip from "./_ui-components/ActionStrip";
+import CodeEditor from "./_ui-components/CodeEditor";
+import DataVisualizer from "./_ui-components/DataVisualizer";
 import styles from "./page.module.css";
-import Header from "./_ui-components/Header";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Header />
+      <DataVisualizer />
+      <CodeEditor />
     </main>
   );
 }

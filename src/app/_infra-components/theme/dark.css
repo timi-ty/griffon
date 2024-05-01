@@ -2,5 +2,7 @@
 
 :root{
     --background-color: #000000;
+    --background-accent-color: #2d2d2d;
     --primary-text-color: #ffffff;
+    --primary-color: #c94848;
 }

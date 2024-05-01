@@ -1,0 +1,18 @@
+.main{
+    min-height: 20rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.node{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+}
