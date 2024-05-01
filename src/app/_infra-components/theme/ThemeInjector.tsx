@@ -23,7 +23,9 @@ function useLightTheme() {
   :root{
     --background-color: #ffffff;
     --background-accent-color: #d4d4d4;
+    --card-background-color: #ffddc2;
     --primary-text-color: #000000;
+    --secondary-text-color: #1f1f1f;
     --primary-color: #c94848;
 }`);
 }
@@ -33,7 +35,9 @@ function useDarkTheme() {
   :root{
     --background-color: #000000;
     --background-accent-color: #2d2d2d;
+    --card-background-color: #010d0b;
     --primary-text-color: #ffffff;
+    --secondary-text-color: #c2c2c2;
     --primary-color: #c94848;
 }`);
 }

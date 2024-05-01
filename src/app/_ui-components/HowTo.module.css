@@ -1,0 +1,9 @@
+.main{
+    padding: 1rem;
+    border: 2px;
+    border-radius: 0.25rem;
+    width: 100%;
+    background-color: var(--card-background-color);
+    color: var(--secondary-text-color);
+    font-size: 0.975rem;
+}
