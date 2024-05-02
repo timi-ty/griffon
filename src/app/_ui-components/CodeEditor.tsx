@@ -34,7 +34,7 @@ function CodeEditor() {
   const editor: MutableRefObject<EditorView | null> = useRef(null);
   const iframRef: MutableRefObject<HTMLIFrameElement | null> = useRef(null);
   const codeEditorRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-  const { addVisualizeData } = useVisualizeData();
+  const { addVisualizeData, resetVisualizeData } = useVisualizeData();
   const [isCodeStale, setIsCodeStale] = useState(false);
 
   function visualizeArray(array: number[]) {
@@ -42,6 +42,8 @@ function CodeEditor() {
   }
 
   function run() {
+    resetVisualizeData();
+
     const iframeDocument =
       iframRef.current?.contentDocument ||
       iframRef.current?.contentWindow?.document;

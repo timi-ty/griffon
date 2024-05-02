@@ -18,6 +18,8 @@ function Header() {
         progress={`${slot + 1}/${visualizeData.length}`}
         onPrevious={() => setSlot(slot - 1)}
         onNext={() => setSlot(slot + 1)}
+        canNext={slot < visualizeData.length - 1}
+        canPrevious={slot >= 0}
       />
       <Image
         src={theme === "dark" ? "dark.svg" : "light.svg"}

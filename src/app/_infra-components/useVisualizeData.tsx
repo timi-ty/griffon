@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { store } from "../_state/store";
-import { addVisualizeData, setSlot } from "../_state/slice.globalui";
+import {
+  addVisualizeData,
+  resetVisualizeData,
+  setSlot,
+} from "../_state/slice.globalui";
 
 function useVisualizeData() {
   const [data, setData] = useState(
@@ -25,6 +29,7 @@ function useVisualizeData() {
     addVisualizeData: (data: number[]) =>
       store.dispatch(addVisualizeData(data)),
     slot: slot,
+    resetVisualizeData: () => store.dispatch(resetVisualizeData()),
     setSlot: (value: number) => store.dispatch(setSlot(value)),
   };
 }

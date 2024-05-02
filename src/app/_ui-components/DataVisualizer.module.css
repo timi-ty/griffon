@@ -1,3 +1,19 @@
+@keyframes pulse {
+    0% {
+      scale: 1;
+      opacity: 1;
+    }
+    50% {
+      scale: 0;
+      opacity: 0;
+    }
+    100% {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+  
+
 .main{
     min-height: 20rem;
     display: flex;
@@ -15,4 +31,8 @@
     background-color: var(--primary-color);
     color: white;
     border-radius: 50%;
+}
+
+.animateNode{
+    animation: pulse 1s ease;
 }

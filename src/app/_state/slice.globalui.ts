@@ -10,7 +10,7 @@ interface GlobalUIState {
 
 const defaultGlobalUIState: GlobalUIState = {
   theme: localStorage.getItem("theme") as Theme | "light",
-  visualizeData: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
+  visualizeData: [[0]],
   slot: 0,
 };
 
@@ -41,7 +41,11 @@ const globalUISlice = createSlice({
       };
     },
     resetVisualizeData(state) {
-      state.visualizeData = [];
+      const newVisualizeData = [[0]];
+      return {
+        ...state,
+        visualizeData: newVisualizeData,
+      };
     },
     setSlot(state, action: NumberAction) {
       state.slot = Math.min(

@@ -1,11 +1,23 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useVisualizeData from "../_infra-components/useVisualizeData";
 import styles from "./DataVisualizer.module.css";
 
 function DataNode({ value }: Readonly<{ value: number }>) {
-  return <div className={styles.node}>{value}</div>;
+  const [animateChange, setAnimateChange] = useState(true);
+  useEffect(() => {
+    setAnimateChange(true);
+    const handle = setTimeout(() => setAnimateChange(false), 1000);
+    return () => clearTimeout(handle);
+  }, [value]);
+  return (
+    <div
+      className={`${styles.node} ${animateChange ? styles.animateNode : ""}`}
+    >
+      {value}
+    </div>
+  );
 }
 
 function DataVisualizer() {
