@@ -34,11 +34,11 @@ function CodeEditor() {
   const editor: MutableRefObject<EditorView | null> = useRef(null);
   const iframRef: MutableRefObject<HTMLIFrameElement | null> = useRef(null);
   const codeEditorRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-  const { setVisualizeData } = useVisualizeData();
+  const { addVisualizeData } = useVisualizeData();
   const [isCodeStale, setIsCodeStale] = useState(false);
 
   function visualizeArray(array: number[]) {
-    setVisualizeData(array);
+    addVisualizeData(array);
   }
 
   function run() {

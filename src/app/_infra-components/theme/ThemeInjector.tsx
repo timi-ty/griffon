@@ -33,7 +33,7 @@ function useLightTheme() {
 function useDarkTheme() {
   return injectStyles(`
   :root{
-    --background-color: #000000;
+    --background-color: #121212;
     --background-accent-color: #2d2d2d;
     --card-background-color: #010d0b;
     --primary-text-color: #ffffff;

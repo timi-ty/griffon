@@ -19,6 +19,7 @@
     height: 2rem;
     background-color: var(--background-accent-color);
     border: inherit;
+    color: var(--primary-text-color);
     border-radius: 0rem 0rem 0rem 0.25rem;
     cursor: pointer;
     z-index: 0;
