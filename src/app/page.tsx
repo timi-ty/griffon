@@ -1,4 +1,3 @@
-import ActionStrip from "./_ui-components/ActionStrip";
 import CodeEditor from "./_ui-components/CodeEditor";
 import DataVisualizer from "./_ui-components/DataVisualizer";
 import HowTo from "./_ui-components/HowTo";

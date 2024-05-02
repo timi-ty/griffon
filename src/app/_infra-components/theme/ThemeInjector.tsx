@@ -1,6 +1,6 @@
 "use client";
 
-import { StoreState, store } from "@/app/_state/store";
+import { store } from "@/app/_state/store";
 import { useEffect, useState } from "react";
 
 export type Theme = "dark" | "light";

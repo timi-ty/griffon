@@ -1,6 +1,6 @@
 "use client";
 
-import { MutableRefObject, useEffect, useRef } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import ActionStrip from "./ActionStrip";
 import styles from "./CodeEditor.module.css";
 import useVisualizeData from "../_infra-components/useVisualizeData";
@@ -35,6 +35,7 @@ function CodeEditor() {
   const iframRef: MutableRefObject<HTMLIFrameElement | null> = useRef(null);
   const codeEditorRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
   const { setVisualizeData } = useVisualizeData();
+  const [isCodeStale, setIsCodeStale] = useState(false);
 
   function visualizeArray(array: number[]) {
     setVisualizeData(array);
@@ -69,6 +70,8 @@ function CodeEditor() {
     } catch (error) {
       console.log("Code failed to execute.");
     }
+
+    setIsCodeStale(true);
   }
 
   useEffect(() => {
@@ -87,13 +90,26 @@ function CodeEditor() {
         }),
       });
       editor.current = newEditor;
+
+      // Listen for changes in the editor content
+      editor.current.contentDOM.addEventListener("input", () => {
+        setIsCodeStale(false);
+      });
+
+      // Listen for delete events in the editor content
+      editor.current.dom.addEventListener("keydown", (event) => {
+        // Check if the pressed key is the delete key or backspace key
+        if (event.key === "Delete" || event.key === "Backspace") {
+          setIsCodeStale(false);
+        }
+      });
     }
     return () => newEditor?.destroy();
   }, [codeEditorRef.current]);
 
   return (
     <div className={styles.main}>
-      <ActionStrip onClickRun={run} />
+      <ActionStrip onClickRun={run} isStale={isCodeStale} />
       <iframe ref={iframRef} style={{ display: "none" }}></iframe>
       <div ref={codeEditorRef} className={styles.codeArea}></div>
     </div>
