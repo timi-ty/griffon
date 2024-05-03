@@ -9,8 +9,13 @@ import { javascript as cmJavascript } from "@codemirror/lang-javascript";
 import { EditorState } from "@codemirror/state";
 import { lineNumbers, highlightActiveLineGutter } from "@codemirror/view";
 
-const shuffleCodeDefault: string = `function shuffle(array) {
+const shuffleCodeDefault: string = `function shuffle(arrayInput) {
   // Create a copy of the original array to avoid modifying it
+  const array = [...arrayInput];
+
+  // Visualize the starting array
+  visualizeArray(array);
+
   let currentIndex = array.length, randomIndex;
 
   // While there remain elements to shuffle
@@ -22,6 +27,7 @@ const shuffleCodeDefault: string = `function shuffle(array) {
     // And swap it with the current element
     [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
 
+    // Visualize each stage (iteration) of the shuffle
     visualizeArray(array);
   }
 

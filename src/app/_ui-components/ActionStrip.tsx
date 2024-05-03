@@ -10,7 +10,7 @@ function ActionStrip({
       <button className={styles.actionButton} onClick={onClickRun}>
         <img
           className={styles.actionImage}
-          src={isStale ? "repeat.png" : "play.png"}
+          src={isStale ? "repeat.svg" : "play.svg"}
         />
       </button>
     </div>

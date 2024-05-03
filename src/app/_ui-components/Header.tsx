@@ -15,14 +15,18 @@ function Header() {
     <header className={styles.header}>
       <div>Griffon</div>
       <ScrollControls
-        progress={`${slot + 1}/${visualizeData.length}`}
+        current={Math.min(slot + 1, visualizeData.length)}
+        total={visualizeData.length}
+        setCurrent={(value) => {
+          setSlot(value - 1);
+        }}
         onPrevious={() => setSlot(slot - 1)}
         onNext={() => setSlot(slot + 1)}
         canNext={slot < visualizeData.length - 1}
-        canPrevious={slot >= 0}
+        canPrevious={slot > 0}
       />
       <Image
-        src={theme === "dark" ? "dark.svg" : "light.svg"}
+        src={theme === "dark" ? "light.svg" : "dark.svg"}
         alt={"toggle theme"}
         className={styles.themeToggle}
         width={32}

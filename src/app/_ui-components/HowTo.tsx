@@ -7,6 +7,9 @@ function HowTo() {
       <br />
       <br />
       <i>
+        Run Griffon by hitting the play button just above the code editor.
+        <br />
+        <br />
         Griffon is a simple array visualizer that only works with javascript
         code. The web app launches with the Knuth Shuffle algorithm, and
         visualizes the result of each stage (iteration) of the shuffle.

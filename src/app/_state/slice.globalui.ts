@@ -10,7 +10,7 @@ interface GlobalUIState {
 
 const defaultGlobalUIState: GlobalUIState = {
   theme: localStorage.getItem("theme") as Theme | "light",
-  visualizeData: [[0]],
+  visualizeData: [],
   slot: 0,
 };
 
@@ -41,10 +41,9 @@ const globalUISlice = createSlice({
       };
     },
     resetVisualizeData(state) {
-      const newVisualizeData = [[0]];
       return {
         ...state,
-        visualizeData: newVisualizeData,
+        visualizeData: [],
       };
     },
     setSlot(state, action: NumberAction) {
