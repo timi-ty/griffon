@@ -13,23 +13,41 @@ function useVisualizeData() {
     store.getState().globalUIState.visualizeData
   );
   const [slot, setDataSlot] = useState(store.getState().globalUIState.slot);
+  const [resetListeners, setResetListeners] = useState([() => {}]);
 
   function onStateChanged() {
     setData(store.getState().globalUIState.visualizeData);
     setDataSlot(store.getState().globalUIState.slot);
+    if (store.getState().globalUIState.visualizeData.length === 0) {
+      resetListeners.forEach((listener) => listener());
+    }
   }
 
   useEffect(() => {
     const unsubscribe = store.subscribe(onStateChanged);
     return () => unsubscribe();
-  }, []);
+  }, [resetListeners]);
 
   return {
     visualizeData: data,
     addVisualizeData: (data: number[]) =>
       store.dispatch(addVisualizeData(data)),
     slot: slot,
-    resetVisualizeData: () => store.dispatch(resetVisualizeData()),
+    addResetListener: (listener: () => void) => {
+      setResetListeners((listeners) => {
+        const newListeners = [...listeners];
+        newListeners.push(listener);
+        return newListeners;
+      });
+      return function removeListener() {
+        setResetListeners((listeners) => {
+          return listeners.filter((oldListener) => oldListener !== listener);
+        });
+      };
+    },
+    resetVisualizeData: () => {
+      store.dispatch(resetVisualizeData());
+    },
     setSlot: (value: number) => store.dispatch(setSlot(value)),
   };
 }

@@ -1,0 +1,8 @@
+.main{
+    width: 100%;
+    border: solid 1px red;
+    background-color: rgb(249, 127, 127);
+    border-radius: 0.25rem;
+    padding: 1rem;
+    color: black;
+}

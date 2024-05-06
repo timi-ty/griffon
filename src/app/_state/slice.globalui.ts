@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Theme } from "../_infra-components/theme/ThemeInjector";
-import { stat } from "fs";
 
 interface GlobalUIState {
   theme: Theme;

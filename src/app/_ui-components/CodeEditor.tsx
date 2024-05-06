@@ -1,6 +1,13 @@
 "use client";
 
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  forwardRef,
+  memo,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import ActionStrip from "./ActionStrip";
 import styles from "./CodeEditor.module.css";
 import useVisualizeData from "../_infra-components/useVisualizeData";
@@ -8,6 +15,7 @@ import { EditorView, basicSetup } from "codemirror";
 import { javascript as cmJavascript } from "@codemirror/lang-javascript";
 import { EditorState } from "@codemirror/state";
 import { lineNumbers, highlightActiveLineGutter } from "@codemirror/view";
+import Script from "next/script";
 
 const shuffleCodeDefault: string = `function shuffle(arrayInput) {
   // Create a copy of the original array to avoid modifying it
@@ -58,16 +66,28 @@ function CodeEditor() {
       console.log("Failed to find iframe.");
       return;
     }
+
     // Clear the contents of the iframe
     iframeDocument.open();
     iframeDocument.write("");
     iframeDocument.close();
+
+    if (iframRef.current && iframRef.current.contentWindow) {
+      iframRef.current.contentWindow.addEventListener(
+        "error",
+        function (event) {
+          // If there's an error, display it on the webpage
+          console.error(event.error.stack);
+        }
+      );
+    }
 
     try {
       if (!iframeDocument.defaultView) {
         console.log("Failed to find iframe default view.");
         return;
       }
+
       // Pass only the function to the iframe's context
       (iframeDocument.defaultView as any).visualizeArray = visualizeArray;
 
@@ -76,7 +96,8 @@ function CodeEditor() {
       iframeDocument.body.appendChild(script);
       console.log("Executed code successfully.");
     } catch (error) {
-      console.log("Code failed to execute.");
+      console.error("Code failed to execute.");
+      console.error(error);
     }
 
     setIsCodeStale(true);
@@ -112,16 +133,24 @@ function CodeEditor() {
         }
       });
     }
+
     return () => newEditor?.destroy();
-  }, [codeEditorRef.current]);
+  }, []);
 
   return (
     <div className={styles.main}>
       <ActionStrip onClickRun={run} isStale={isCodeStale} />
       <iframe ref={iframRef} style={{ display: "none" }}></iframe>
-      <div ref={codeEditorRef} className={styles.codeArea}></div>
+      <CodeMirrorEditor ref={codeEditorRef} />
     </div>
   );
 }
+
+const CodeMirrorEditor = memo(
+  forwardRef<HTMLDivElement, {}>((_props, ref) => {
+    return <div ref={ref} className={styles.codeArea}></div>;
+  }),
+  () => true
+);
 
 export default CodeEditor;

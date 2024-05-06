@@ -23,8 +23,6 @@ function DataNode({ value }: Readonly<{ value: number }>) {
 function DataVisualizer() {
   const { visualizeData, slot } = useVisualizeData();
 
-  useEffect(() => console.log(visualizeData.length), [visualizeData]);
-
   return (
     <div className={styles.main}>
       {visualizeData[slot]?.map((item, index) => (
