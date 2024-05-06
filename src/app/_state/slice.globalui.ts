@@ -3,7 +3,7 @@ import { Theme } from "../_infra-components/theme/ThemeInjector";
 
 interface GlobalUIState {
   theme: Theme;
-  visualizeData: number[][];
+  visualizeData: any[][];
   slot: number;
 }
 
@@ -15,7 +15,7 @@ const defaultGlobalUIState: GlobalUIState = {
 
 interface VisualizeDataAction {
   type: string;
-  payload: number[];
+  payload: any[];
 }
 
 interface NumberAction {
