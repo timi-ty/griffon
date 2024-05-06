@@ -20,7 +20,7 @@
     background-color: var(--background-accent-color);
     border: inherit;
     color: var(--primary-text-color);
-    border-radius: 0rem 0rem 0rem 0.25rem;
+    border-radius: 0rem 0.25rem 0rem 0rem;
     cursor: pointer;
     z-index: 0;
 }
