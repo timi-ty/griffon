@@ -10,6 +10,7 @@
 .languageTag{
     background-color: var(--background-accent-color);
     padding: 0.5rem;
+    font-size: 0.875rem;
     border-radius: 0.25rem 0rem 0rem 0rem;
     color: var(--secondary-text-color);
 }
@@ -28,5 +29,5 @@
 .actionImage{
     object-fit: contain;
     vertical-align: middle;
-    padding: 10%;
+    padding: 30%;
 }

@@ -8,7 +8,7 @@ interface GlobalUIState {
 }
 
 const defaultGlobalUIState: GlobalUIState = {
-  theme: localStorage.getItem("theme") as Theme | "light",
+  theme: "light",
   visualizeData: [],
   slot: 0,
 };
@@ -29,7 +29,6 @@ const globalUISlice = createSlice({
   reducers: {
     toggleTheme(state) {
       state.theme = state.theme === "dark" ? "light" : "dark";
-      localStorage.setItem("theme", state.theme);
     },
     addVisualizeData(state, action: VisualizeDataAction) {
       const newVisualizeData = [...state.visualizeData];
