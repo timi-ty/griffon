@@ -1,7 +1,7 @@
 "use client";
 
 import { store } from "@/app/_state/store";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export type Theme = "dark" | "light";
 
@@ -18,7 +18,7 @@ function injectStyles(styles: string) {
   return removeStyles;
 }
 
-function useLightTheme() {
+function injectLightTheme() {
   return injectStyles(`
   :root{
     --background-color: #ffffff;
@@ -30,7 +30,7 @@ function useLightTheme() {
 }`);
 }
 
-function useDarkTheme() {
+function injectDarkTheme() {
   return injectStyles(`
   :root{
     --background-color: #121212;
@@ -45,17 +45,18 @@ function useDarkTheme() {
 function ThemeInjector() {
   const [theme, setTheme] = useState(store.getState().globalUIState.theme);
 
-  function onStateChanged() {
+  const onStateChanged = useCallback(function () {
     setTheme(store.getState().globalUIState.theme);
-  }
+  }, []);
 
   useEffect(() => {
     const unsubscribe = store.subscribe(onStateChanged);
     return () => unsubscribe();
-  }, []);
+  }, [onStateChanged]);
 
   useEffect(() => {
-    const unloadTheme = theme === "dark" ? useDarkTheme() : useLightTheme();
+    const unloadTheme =
+      theme === "dark" ? injectDarkTheme() : injectLightTheme();
     return () => unloadTheme();
   }, [theme]);
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useTheme from "../_infra-components/theme/useTheme";
 import styles from "./ScrollControls.module.css";
+import Image from "next/image";
 
 function ScrollControls({
   current,
@@ -32,11 +33,14 @@ function ScrollControls({
         className={styles.button}
         onClick={onPrevious}
       >
-        <img
+        <Image
           className={styles.icon}
           src={`${
             theme === "dark" ? "previous_light.svg" : "previous_dark.svg"
           }`}
+          alt={"Previous"}
+          width={24}
+          height={24}
         />
       </button>
       <form
@@ -57,9 +61,12 @@ function ScrollControls({
         </div>
       </form>
       <button disabled={!canNext} className={styles.button} onClick={onNext}>
-        <img
+        <Image
           className={styles.icon}
           src={`${theme === "dark" ? "next_light.svg" : "next_dark.svg"}`}
+          alt={"Next"}
+          width={24}
+          height={24}
         />
       </button>
     </div>

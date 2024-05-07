@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { store } from "../_state/store";
 import {
   addVisualizeData,
@@ -15,18 +15,21 @@ function useVisualizeData() {
   const [slot, setDataSlot] = useState(store.getState().globalUIState.slot);
   const [resetListeners, setResetListeners] = useState([() => {}]);
 
-  function onStateChanged() {
-    setData(store.getState().globalUIState.visualizeData);
-    setDataSlot(store.getState().globalUIState.slot);
-    if (store.getState().globalUIState.visualizeData.length === 0) {
-      resetListeners.forEach((listener) => listener());
-    }
-  }
+  const onStateChanged = useCallback(
+    function () {
+      setData(store.getState().globalUIState.visualizeData);
+      setDataSlot(store.getState().globalUIState.slot);
+      if (store.getState().globalUIState.visualizeData.length === 0) {
+        resetListeners.forEach((listener) => listener());
+      }
+    },
+    [resetListeners]
+  );
 
   useEffect(() => {
     const unsubscribe = store.subscribe(onStateChanged);
     return () => unsubscribe();
-  }, [resetListeners]);
+  }, [onStateChanged]);
 
   return {
     visualizeData: data,

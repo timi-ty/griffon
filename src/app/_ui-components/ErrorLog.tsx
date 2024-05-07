@@ -28,7 +28,7 @@ function ErrorLog() {
       console.error = oldErrorLog;
       removeListener();
     };
-  }, []);
+  }, [addResetListener]);
 
   return (
     <>
