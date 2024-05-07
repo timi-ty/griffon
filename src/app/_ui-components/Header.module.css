@@ -9,6 +9,13 @@
     border-radius: 0.5rem;
 }
 
+.header .left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .header .themeToggle{
     cursor: pointer;
 }

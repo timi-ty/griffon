@@ -13,7 +13,10 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <div>Griffon</div>
+      <div className={styles.left}>
+        <Image src="griffon.svg" alt={"Griffon Logo"} width={32} height={32} />
+        <div>Griffon</div>
+      </div>
       <ScrollControls
         current={Math.min(slot + 1, visualizeData.length)}
         total={visualizeData.length}
