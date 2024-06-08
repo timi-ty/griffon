@@ -15,7 +15,6 @@ import { EditorView, basicSetup } from "codemirror";
 import { javascript as cmJavascript } from "@codemirror/lang-javascript";
 import { EditorState } from "@codemirror/state";
 import { lineNumbers, highlightActiveLineGutter } from "@codemirror/view";
-import Script from "next/script";
 
 const shuffleCodeDefault: string = `function shuffle(arrayInput) {
   // Create a copy of the original array to avoid modifying it

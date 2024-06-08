@@ -23,12 +23,20 @@ interface NumberAction {
   payload: number;
 }
 
+interface ThemeAction {
+  type: string;
+  payload: Theme;
+}
+
 const globalUISlice = createSlice({
   name: "globalUIState",
   initialState: defaultGlobalUIState,
   reducers: {
     toggleTheme(state) {
       state.theme = state.theme === "dark" ? "light" : "dark";
+    },
+    setTheme(state, theme: ThemeAction) {
+      state.theme = theme.payload;
     },
     addVisualizeData(state, action: VisualizeDataAction) {
       const newVisualizeData = [...state.visualizeData];
@@ -53,8 +61,13 @@ const globalUISlice = createSlice({
   },
 });
 
-export const { toggleTheme, addVisualizeData, resetVisualizeData, setSlot } =
-  globalUISlice.actions;
+export const {
+  toggleTheme,
+  setTheme,
+  addVisualizeData,
+  resetVisualizeData,
+  setSlot,
+} = globalUISlice.actions;
 
 export { type GlobalUIState };
 

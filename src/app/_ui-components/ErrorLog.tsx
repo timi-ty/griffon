@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import styles from "./ErrorLog.module.css";
 import useVisualizeData from "../_infra-components/useVisualizeData";
 
+const emptyStringArray: string[] = [];
+
 function ErrorLog() {
-  const [messages, setMessages] = useState([""]);
+  const [messages, setMessages] = useState(emptyStringArray);
   const { addResetListener } = useVisualizeData();
 
   useEffect(() => {
